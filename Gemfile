@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "activesupport"
-gem "cheesy-common", :git => "https://github.com/Team254/cheesy-common.git"
+gem "aescrypt"
 gem "daemons"
 gem "dedent"
 gem "httparty"

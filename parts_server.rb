@@ -12,11 +12,15 @@ require "pathological"
 require "pony"
 require "sinatra/base"
 
+require "config"
 require "models"
+require "wordpress_authentication"
 
 module CheesyParts
   class Server < Sinatra::Base
-    use Rack::Session::Cookie, :key => "rack.session", :expire_after => 3600
+    include WordpressAuthentication
+
+    use Rack::Session::Cookie, :key => "rack.session"
 
     # Enforce authentication for all routes except login and user registration.
     before do
@@ -40,13 +44,12 @@ module CheesyParts
     def send_email(to, subject, body)
       # Run this asynchronously using EventMachine since it takes a couple of seconds.
       EM.defer do
-        Pony.mail(:from => "Cheesy Parts <#{CheesyCommon::Config.gmail_user}>", :to => to,
+        Pony.mail(:from => "Cheesy Parts <#{Config.gmail_user}>", :to => to,
                   :subject => subject, :body => body, :via => :smtp,
                   :via_options => { :address => "smtp.gmail.com", :port => "587",
-                                    :enable_starttls_auto => true,
-                                    :user_name => CheesyCommon::Config.gmail_user.split("@").first,
-                                    :password => CheesyCommon::Config.gmail_password,
-                                    :authentication => :plain, :domain => "localhost.localdomain" })
+                                    :enable_starttls_auto => true, :user_name => Config.gmail_user.split("@").first,
+                                    :password => Config.gmail_password, :authentication => :plain,
+                                    :domain => "localhost.localdomain" })
       end
     end
 
@@ -58,16 +61,18 @@ module CheesyParts
       redirect "/logout" if @user
       @redirect = params[:redirect] || "/"
 
-      if CheesyCommon::Config.enable_wordpress_auth
-        member = CheesyCommon::Auth.get_user(request)
-        if member.nil?
-          redirect "#{CheesyCommon::Config.members_url}?site=parts&path=#{request.path}"
-        else
-          user = User[:wordpress_user_id => member.id]
+      if Config.enable_wordpress_auth
+        # Try authenticating against Wordpress.
+        wordpress_user_info = get_wordpress_user_info
+        if wordpress_user_info
+          user = User[:wordpress_user_id => wordpress_user_info["id"]]
           unless user
-            user = User.create(:wordpress_user_id => member.id, :first_name => member.name[1],
-                               :last_name => member.name[0], :permission => "editor", :enabled => 1,
-                               :email => member.email, :password => "", :salt => "")
+            names = wordpress_user_info["name"].split(" ")
+            first_name = names.first
+            last_name = names[1..-1].join(" ")
+            user = User.create(:wordpress_user_id => wordpress_user_info["id"], :first_name => first_name,
+                               :last_name => last_name, :permission => "editor", :enabled => 1,
+                               :email => wordpress_user_info["username"])
           end
           session[:user_id] = user.id
           redirect @redirect
@@ -92,11 +97,7 @@ module CheesyParts
 
     get "/logout" do
       session[:user_id] = nil
-      if CheesyCommon::Config.enable_wordpress_auth
-        redirect "#{CheesyCommon::Config.members_url}/logout"
-      else
-        redirect "/login"
-      end
+      redirect "/login"
     end
 
     get "/new_project" do
@@ -407,7 +408,7 @@ module CheesyParts
 
         The Cheesy Parts Robot
       EOS
-      send_email(CheesyCommon::Config.gmail_user, "Approval needed for #{user.email}", email_body)
+      send_email(Config.gmail_user, "Approval needed for #{user.email}", email_body)
       erb :register_confirmation
     end
 
