@@ -1,14 +1,15 @@
-Cheesy Parts
+Provoking Parts
 ============
 
-Cheesy Parts is a web-based system for tracking parts through the design and manufacture cycle. It assigns
+Provoking Parts is a web-based system for tracking parts through the design and manufacture cycle. It assigns
 part numbers with which CAD files can be saved to version control and stores information about parts'
 current manufacturing status.
 
-Cheesy Parts is written in Ruby using the [Sinatra](http://sinatrarb.com) framework and uses MySQL as the
+Provoking Parts is written in Ruby using the [Sinatra](http://sinatrarb.com) framework and uses MySQL as the
 backing datastore. Development and production are run on UNIX (OS X and Ubuntu), so there are no guarantees
 it'll work on Windows, sorry.
 
+We didn't write this, Team 254 did. The original name is [Cheesy Parts](https://github.com/Team254/cheesy-parts).
 ## Development
 
 Prerequisites:
@@ -20,7 +21,7 @@ Prerequisites:
 To run Cheesy Parts locally:
 
 1. Create an empty MySQL database and a user account with full permissions on it.
-1. Populate `config/environment.rb` with the parameters for the development environment. This file is
+1. Populate `config.json` with the parameters for the development environment. This file is
 overwritten on deploy with the parameters in the Rakefile, so it's okay to set the development values in it
 and then forget about it.
 1. Run `bundle install`. This will download and install the gems that Cheesy Parts depends on.

@@ -1,16 +1,16 @@
 {
   "global": {
     "db_host": "localhost",
-    "db_user": "team254",
-    "db_database": "cheesy_parts",
+    "db_user": "4904PartsTracker",
+    "db_database": "4904Parts",
     "port": 9000,
-    "base_address": "https://parts.team254.com",
-    "gmail_user": "cheesyparts@gmail.com",
+    "base_address": "https://parts.botprovoking.org",
+    "gmail_user": "botprovoking@gmail.com",
     "enable_wordpress_auth": true
     },
   "dev": {
-    "db_password": "correcthorsebatterystaple",
-    "gmail_password": "correcthorsebatterystaple"
+    "db_password": "Pr0v0king_Parts$",
+    "gmail_password": "FRCTeam4904"
   },
   "prod": {
     "db_password": "Encrypted:0iYLP6HuJ7qY1/BtUYAQ+Q==\n",
