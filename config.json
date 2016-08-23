@@ -1,15 +1,15 @@
 {
   "global": {
-    "db_host": "localhost",
+    "db_host": "mysql.botprovoking.org",
     "db_user": "partbotprovoking",
     "db_database": "partsbotprovoking",
     "port": 9000,
-    "base_address": "https://parts.botprovoking.org",
+    "base_address": "parts.botprovoking.org",
     "gmail_user": "botprovoking@gmail.com",
     "enable_wordpress_auth": true
     },
   "dev": {
-    "db_password": "Pr0v0king_Parts$",
+    "db_password": "P@rt5B0t",
     "gmail_password": "FRCTeam4904"
   },
   "prod": {

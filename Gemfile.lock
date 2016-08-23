@@ -11,6 +11,9 @@ GEM
     daemons (1.2.3)
     dedent (1.0.1)
     eventmachine (1.0.9.1)
+    fezzik (0.8.4)
+      rake
+      weave (~> 1.0.0)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -22,6 +25,7 @@ GEM
     minitest (5.8.4)
     multi_xml (0.5.5)
     mysql2 (0.4.2)
+    net-ssh (3.2.0)
     pathological (0.3.0)
     pony (1.11)
       mail (>= 2.0)
@@ -42,6 +46,8 @@ GEM
     tilt (2.0.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    weave (1.0.1)
+      net-ssh (>= 2.2.0)
 
 PLATFORMS
   ruby
@@ -51,6 +57,7 @@ DEPENDENCIES
   aescrypt
   daemons
   dedent
+  fezzik
   httparty
   mysql2
   pathological
@@ -61,4 +68,4 @@ DEPENDENCIES
   thin
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
