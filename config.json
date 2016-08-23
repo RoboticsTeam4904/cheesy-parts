@@ -4,7 +4,7 @@
     "db_user": "partbotprovoking",
     "db_database": "partsbotprovoking",
     "port": 9000,
-    "base_address": "parts.botprovoking.org",
+    "base_address": "https://parts.botprovoking.org",
     "gmail_user": "botprovoking@gmail.com",
     "enable_wordpress_auth": true
     },
