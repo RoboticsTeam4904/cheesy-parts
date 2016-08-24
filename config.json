@@ -6,14 +6,14 @@
     "port": 9000,
     "base_address": "https://parts.botprovoking.org",
     "gmail_user": "botprovoking@gmail.com",
-    "enable_wordpress_auth": true
+    "enable_wordpress_auth": false
     },
   "dev": {
     "db_password": "P@rt5B0t",
-    "gmail_password": "FRCTeam4904"
+    "gmail_password": "lelelele"
   },
   "prod": {
     "db_password": "P@rt5B0t",
-    "gmail_password": "FRCTeam4904"
+    "gmail_password": "lelelelelelele"
   }
 }
