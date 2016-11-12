@@ -29,6 +29,9 @@
     <label>Drawing Created?</b>
       <input type="checkbox" name="drawing_created"<% if @part.drawing_created == 1 %>checked<% end %>/>
     </label>
+    <%= form_for @person do |f| %>
+      <%= f.file_field :picture %>
+    <% end %>
     <label>Priority</label>
     <select name="priority">
       <% Part::PRIORITY_MAP.each_pair do |key, value| %>

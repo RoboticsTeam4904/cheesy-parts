@@ -48,4 +48,11 @@ class Part < Sequel::Model
   def full_part_number
     "#{project.part_number_prefix}-#{type == "assembly" ? "A" : "P"}-%04d" % part_number
   end
+  
+  def upload
+  uploaded_io = params[:person][:picture]
+  File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    file.write(uploaded_io.read)
+  end
+end
 end
