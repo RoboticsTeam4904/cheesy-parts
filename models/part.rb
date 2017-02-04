@@ -15,6 +15,7 @@ class Part < Sequel::Model
                  "material" => "Material needs to be ordered",
                  "ordered" => "Waiting for materials",
                  "drawing" => "Needs drawing",
+                 "cam" => "Ready to CAM",
                  "ready" => "Ready to manufacture",
                  "manufacturing" => "Manufacturing in progress",
                  "outsourced" => "Waiting for outsourced manufacturing",
