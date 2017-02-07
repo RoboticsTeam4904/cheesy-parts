@@ -18,12 +18,8 @@ class Part < Sequel::Model
                  "cam" => "Ready to CAM",
                  "ready" => "Ready to manufacture",
                  "manufacturing" => "Manufacturing in progress",
-                 "outsourced" => "Waiting for outsourced manufacturing",
                  "welding" => "Waiting for welding",
-                 "scotchbrite" => "Waiting for Scotch-Brite",
-                 "anodize" => "Ready for anodize",
-                 "powder" => "Ready for powder coating",
-                 "coating" => "Waiting for coating",
+                 "scotchbrite" => "Waiting for Polishing",
                  "assembly" => "Waiting for assembly",
                  "done" => "Done" }
 
