@@ -18,6 +18,8 @@ class Part < Sequel::Model
                  "cam" => "Ready to CAM",
                  "ready" => "Ready to manufacture",
                  "manufacturing" => "Manufacturing in progress",
+                 "queued" => "Waiting to print",
+                 "printing" => "Printing",
                  "welding" => "Waiting for welding",
                  "scotchbrite" => "Waiting for Polishing",
                  "assembly" => "Waiting for assembly",
